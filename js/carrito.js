@@ -55,10 +55,10 @@ document.addEventListener('click', function(event) {
     }
 });
 
-function eliminarProductoDeTabla(fila) {
-    fila.remove();
+// function eliminarProductoDeTabla(fila) {
+//     fila.remove();
 
-}
+// }
 
 
 
