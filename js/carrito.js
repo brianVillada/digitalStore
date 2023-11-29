@@ -11,19 +11,11 @@ let inputPedido = document.querySelector(".listado-carrito tbody");
 
 
 
-// btn_carrito.forEach(function(boton) {
-//     boton.addEventListener("click", function() {
-
-//         sumarUno();
-//         console.log(boton);
-//     });
-
-// });
-
 btn_carrito.forEach(function(boton) {
     boton.addEventListener("click", function(event) {
+        console.log("THIS: " + this);
         const productItem = this.closest('.product-item');
-
+        console.log("CLOSEST: " + productItem);
         const nombreProducto = productItem.querySelector('.titulo-pro').textContent;
         const precioRegular = productItem.querySelector('.precio-regular-pro').textContent;
         const imagenSrc = productItem.querySelector('img').getAttribute('src');
@@ -80,37 +72,39 @@ function eliminarProductoDeTabla(fila) {
 
 
 
-// function checkCartEmpty() {
-//     const tabla = document.querySelector('.listado-carrito');
-//     const tbody = tabla.querySelector('tbody');
+function checkCartEmpty() {
+    const tabla = document.querySelector('.listado-carrito');
+    const tbody = tabla.querySelector('tbody');
 
-//     if (conPro == 0) {
-//         const mensaje = document.createElement('tr');
-//         mensaje.innerHTML = `<td colspan="5" class="text-center">No tienes productos en el carrito</td>`;
-//         tbody.appendChild(mensaje);
-//     }
-// }
+    if (conPro == 0) {
+        const mensaje = document.createElement('tr');
+        mensaje.innerHTML = `<td colspan="5" class="text-center">No tienes productos en el carrito</td>`;
+        tbody.appendChild(mensaje);
+    }
+}
+
+
 
 
 /*
 btn_carrito.forEach(function(boton) {
     boton.addEventListener("click", function() {
-        // Obtener el elemento 'con-imagen-pro' asociado al botón actual
+
         const producto = this.closest('.con-imagen-pro');
 
-        // Obtener los elementos hijos dentro del elemento 'con-imagen-pro' con sus respectivas clases
+
         const nombreProducto = producto.querySelector('.titulo-pro').textContent;
         const precioRegular = producto.querySelector('.precio-regular-pro').textContent;
         const imagenSrc = producto.querySelector('img').getAttribute('src');
 
-        // Crear un objeto con la información capturada
+
         const infoProducto = {
             nombre: nombreProducto,
             precio: precioRegular,
             imagen: imagenSrc
         };
 
-        // Aquí puedes hacer lo que quieras con la información del producto asociado al botón clickeado
+
         console.log(infoProducto);
         // O puedes guardarlos en un array o realizar cualquier operación que desees
     });
@@ -135,6 +129,40 @@ btn_carrito.forEach(function(boton) {
 
 //     tabla.style.display = "block";
 // };
+
+// Obtener el elemento "bolsa"
+
+
+
+function mostrarTabla() {
+
+    if (conPro == 0) {
+        const tabla = document.querySelector('.listado-carrito');
+        const tbody = tabla.querySelector('tbody');
+
+        const mensaje = document.createElement('tr');
+        mensaje.innerHTML = `<td colspan="5" class="text-center">No tienes productos en el carrito 😫</td>`;
+        tbody.appendChild(mensaje);
+        tabla.style.display = "block";
+        setTimeout(() => {
+            tabla.style.display = "none";
+            mensaje.remove();
+        }, 2000);
+    }
+
+    let tabla = document.querySelector('.listado-carrito');
+    tabla.style.display = "block";
+
+    // Desaparecer la tabla después de 5 segundos
+    setTimeout(() => {
+        tabla.style.display = "none";
+    }, 5000);
+}
+
+
+bolsa.addEventListener("mouseenter", mostrarTabla);
+
+
 
 
 
